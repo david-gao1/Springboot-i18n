@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>login</title>
+</head>
+<body>
+<div style="width:100%;height:30px;background:#ffffff;font-size: 16px;" ></div>
+<div id="content" style="width:1040px;">
+    <div style="width:790px;float:left;margin-left:30px;">
+        <!--main begin-->
+
+
+        <form class="form-signin" action="dashboard.html">
+            <h1 class="h3 mb-3 font-weight-normal" th:text="#{login.tip}">Please sign in</h1>
+            <label class="sr-only" th:text="#{login.username}">Username</label>
+            <input type="text" class="form-control" placeholder="Username" th:placeholder="#{login.username}" required="" autofocus="">
+            <br/>
+            <br/>
+            <label class="sr-only" th:text="#{login.password}">Password</label>
+            <input type="password" class="form-control" placeholder="Password" th:placeholder="#{login.password}" required="">
+            <div class="checkbox mb-3">
+                <label>
+                    <!--input是自闭标签所以使用 thymeleaf的行内写法-->
+                    <input type="checkbox" value="remember-me"> [[#{login.remember}]]
+                </label>
+            </div>
+            <button class="btn btn-lg btn-primary btn-block" type="submit" th:text="#{login.btn}">Sign in</button>
+            <p class="mt-5 mb-3 text-muted">© 2017-2018</p>
+            <!--
+            <a class="btn btn-sm" th:href="@{/login/login(locale='zh_CN')}">中文</a>
+            <a class="btn btn-sm" th:href="@{/login/login(locale='en_US')}">English</a>
+            -->
+            <a class="btn btn-sm" href="javascript:setLang('zh_CN')">中文</a>
+            <a class="btn btn-sm" href="javascript:setLang('en_US')">English</a>
+        </form>
+
+
+        <!--main   end-->
+    </div>
+</div>
+<script>
+function setLang(langName) {
+    //set cookie
+    //var selectedLang = langName;
+    var exdays = 1;
+    setCookie("selectedLang",langName,exdays);
+    //刷新当前页面
+    window.location.reload();
+}
+
+//设置cookie
+function setCookie(cname,cvalue,exdays) {
+    var d = new Date();
+    d.setTime(d.getTime()+(exdays*24*60*60*1000));
+    var expires = "expires="+d.toGMTString();
+    document.cookie = cname + "=" + cvalue + "; " + expires;
+}
+</script>
+</body>
+</html>
